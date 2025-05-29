@@ -29,22 +29,3 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
-
-document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = {
-    name: form.name.value,
-    message: form.message.value,
-  };
-
-  const res = await fetch('/api/rsvp', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  });
-
-  const msg = await res.text();
-  document.getElementById('response-msg').innerText = msg;
-  form.reset();
-});
